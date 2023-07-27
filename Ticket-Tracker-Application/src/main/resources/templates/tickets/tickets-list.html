@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<title>Ticket Tracker Application</title>
+</head>
+<body>
+	<nav class="navbar bg-primary">
+		<ul class="nav">
+			<li class="nav-item"><a class="ticket-tracker text-light"
+				href="#"> Ticket Tracker Application</a></li>
+
+			<li class="nav-item"><a class="text-light btn-sm mb-3"
+				th:href="@{/ticket/ticketsList}">Tickets</a></li>
+
+			<li class="nav-item"><a class="text-light btn-sm mb-3"
+				th:href="@{/ticket/showFormForNewTicket}">New Ticket</a></li>
+		</ul>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"> </span>
+		</button>
+
+	</nav>
+
+
+	<div class="container">
+		<h1>List Of Tickets</h1>
+
+	
+		
+		<div class = "col-lg-4 container-fluid row align-items-start ">
+				<form th:action="@{/ticket/search}" method ="get" class="d-flex">
+					<input class="form-control me-2" type="text" name="keyword" placeholder="Search title or short description">	
+				 	<button class="btn btn-primary" type="submit">Search</button>
+				</form>
+			</div>	
+		
+
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Id</th>
+					<th>Ticket Title</th>
+					<th>Ticket ShortDescription</th>
+					<th>Ticket Created on</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="tempTick : ${tickets}">
+					<td th:text="${tempTick.id}"></td>
+					<td th:text="${tempTick.ticketTitle}"></td>
+					<td th:text="${tempTick.ticketDescription}"></td>
+					<td th:text="${tempTick.date}"></td>
+					<td><a
+						th:href="@{/ticket/showFormForEdit/{id}(Id=${tempTick.id})}"
+						class="btn btn-primary">Edit</a> <a
+						th:href="@{/ticket/delete/{id}(Id=${tempTick.id})}"
+						class="btn btn-danger">Delete</a> <a
+						th:href="@{/ticket/viewTicket/{id}(Id=${tempTick.id})}"
+						class="btn btn-info">View</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

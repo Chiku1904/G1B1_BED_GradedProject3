@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<title>Ticket Tracker Application</title>
+</head>
+<body>
+	<nav class="navbar bg-primary">
+		<ul class="nav">
+			<li class="nav-item"><a class="ticket-tracker text-light"
+				href="#"> Ticket Tracker Application</a></li>
+
+			<li class="nav-item"><a class="text-light btn-sm mb-3"
+				th:href="@{/ticket/ticketsList}">Tickets</a></li>
+
+			<li class="nav-item"><a class="text-light btn-sm mb-3"
+				th:href="@{/ticket/showFormForNewTicket}">New Ticket</a></li>
+		</ul>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"> </span>
+		</button>
+
+	</nav>
+
+
+	<br>
+	<br>
+	<br>
+
+	<div class="container border border-dark-subtle" align="center">
+
+		<div
+			class="bg-light border border-dark-subtle border-start-0 rounded-end"
+			align="center">
+			<h1>Create Ticket</h1>
+			<br />
+		</div>
+		<br>
+		<div class="col-sm-12">
+			<form action="#" th:action="@{/ticket/save}" th:object="${tickets}"
+				method="post">
+				<div align="left">
+					<label class="form-label">Title </label> <input type="hidden"
+						th:field="*{id}" /> <input type="text" th:field="*{ticketTitle}"
+						class="form-control" placeholder="Enter ticket title" />
+				</div>
+				<br>
+				<div align="left">
+					<label class="form-label">Short Description</label>
+					<textarea type="text" th:field="*{ticketDescription}"
+						class="form-control align-baseline"
+						placeholder="Enter ticket description" style="height: 100px" />
+				</div>
+				<br> <br>
+				<div align="left">
+					<label class="form-label">Content</label>
+					<textarea id="mytextarea" type="text" th:field="*{content}"
+						class="form-control" placeholder="Enter content"
+						style="height: 100px" />
+				</div>
+				<br>
+				<div colspan="2">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>
+</body>
+</html>
